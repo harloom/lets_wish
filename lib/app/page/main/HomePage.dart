@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:lets_wish/app/data/dummy/dummy.dart';
 import 'package:lets_wish/app/theme/constWidget.dart';
 
 import 'package:lets_wish/app/theme/themeData.dart';
@@ -27,6 +29,7 @@ class _HomePageState extends State<HomePage>
         AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animation = Tween(begin: 0.0, end: 1.0).animate(_controller);
     _controller.forward();
+
     super.initState();
   }
 
@@ -76,7 +79,7 @@ class _HomePageState extends State<HomePage>
                   sliderPosition.value = position;
                 },
                 margin: EdgeInsets.only(top: 5),
-                defaultPanelState: PanelState.OPEN,
+                defaultPanelState: PanelState.CLOSED,
                 minHeight: MediaQuery.of(context).size.height * 0.53,
                 maxHeight: MediaQuery.of(context).size.height * 0.8,
                 header: Container(
@@ -93,7 +96,7 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                 ),
-          panelBuilder: (scrollController){
+                 panelBuilder: (scrollController){
 
                 return  Container(
                   padding: EdgeInsets.only(top: 40),
@@ -102,7 +105,7 @@ class _HomePageState extends State<HomePage>
                     children: <Widget>[
 
                     ],
-                  ),
+                  )
                 );
           },
 
@@ -110,7 +113,28 @@ class _HomePageState extends State<HomePage>
           body: Center(
             child: Container(
               color: CustomColors.backgroundMain,
-            ),
+              child: ListView(
+                children: <Widget>[
+              Container(
+                margin: EdgeInsets.all(5),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                  child: CarouselSlider(
+                  options: CarouselOptions(
+                    autoPlay: true,
+                    aspectRatio: 2.0,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    autoPlayInterval: Duration(seconds: 5),
+                    autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    enlargeCenterPage: true,
+                  ),
+                  items: imageSliders
+          )
+                ),
+              ),
+                ],
+              ),
+            )
           ),
           borderRadius:ConstWidget.borderRadiusPannel
         ))));

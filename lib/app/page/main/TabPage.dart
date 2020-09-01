@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lets_wish/app/data/const/const_menu.dart';
+import 'package:lets_wish/app/delegate/SearchView.dart';
 import 'package:lets_wish/app/theme/themeData.dart';
+import 'package:lets_wish/app/widget/custom_snackbar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'index.dart';
@@ -16,6 +18,7 @@ class TabPage extends StatefulWidget {
 
 class _TabPageState extends State<TabPage> {
   int _selectedIndex = 1;
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   final  List<Widget> _pages= <Widget>[
     ExplorerPage(),
     HomePage(),
@@ -26,7 +29,7 @@ class _TabPageState extends State<TabPage> {
 
   ];
 
-  PageController _pageController = PageController();
+  PageController _pageController = PageController(initialPage: 1);
   List<GButton> tabs = new List();
 
   @override
@@ -45,7 +48,7 @@ class _TabPageState extends State<TabPage> {
       padding: padding,
       icon: LineIcons.map,
       // textStyle: t.textStyle,
-      text: 'explorer',
+      text: "explorer".tr(),
     ));
 
     tabs.add(GButton(
@@ -58,7 +61,7 @@ class _TabPageState extends State<TabPage> {
       padding: padding,
       icon: LineIcons.home,
       // textStyle: t.textStyle,
-      text: 'beranda'.tr(),
+      text: "beranda".tr(),
     ));
 
     tabs.add(GButton(
@@ -71,7 +74,7 @@ class _TabPageState extends State<TabPage> {
       padding: padding,
       icon: LineIcons.bell,
       // textStyle: t.textStyle,
-      text: 'notif'.tr(),
+      text: "notif".tr(),
     ));
 
     tabs.add(GButton(
@@ -84,7 +87,7 @@ class _TabPageState extends State<TabPage> {
       padding: padding,
       icon: LineIcons.user,
       // textStyle: t.textStyle,
-      text: 'me'.tr(),
+      text: "me".tr(),
     ));
   }
 
@@ -93,13 +96,22 @@ class _TabPageState extends State<TabPage> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
+      key: _scaffoldKey,
       extendBody: true,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle :true,
-        title: Text("App"),
-        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: CustomColors.platinum
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.search),
+          onPressed: (){
+           // _scaffoldKey.currentState.showSnackBar(CustomSnackbar.successSnackbar("Search, Yeay!"));
+            showSearch(context: context, delegate: SearchView());
+          },
+        ),
+        title: Text('hello').tr(),
       ),
       endDrawer:
       GFDrawer(
@@ -121,6 +133,7 @@ class _TabPageState extends State<TabPage> {
         ),
       ),
       body: PageView.builder(
+      pageSnapping: true,
           onPageChanged: (page){
             setState(() {
               _selectedIndex = page;

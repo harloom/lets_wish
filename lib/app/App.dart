@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:lets_wish/app/theme/themeData.dart';
 
 
 
@@ -18,6 +19,7 @@ Widget build(BuildContext context) {
       locale: context.locale,
 
     theme: ThemeData(
+        primaryColor : CustomColors.mainColor ,
       visualDensity: VisualDensity.adaptivePlatformDensity,
     ),
     home: TabPage(),

@@ -33,14 +33,15 @@ dependencies:
   google_nav_bar: ^2.2.0
 
 
-  easy_localization: ^2.3.2
+  easy_localization: ^2.3.3
   easy_localization_loader: ^0.0.2
   validators: ^2.0.0
 
 
   line_icons: ^0.2.0
   font_awesome_flutter: ^8.8.1
-
+  carousel_slider: ^2.2.1
+  transparent_image: ^1.0.0
   dotted_border: ^1.0.6
   sliding_up_panel: ^1.0.2
   date_field: ^0.3.0
@@ -62,6 +63,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/img/
+    - assets/langs/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

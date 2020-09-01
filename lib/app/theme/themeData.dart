@@ -8,7 +8,7 @@ class CustomColors {
 
 
   static Color backgroundMain = Color(0xFFFCC117);
-  static Color mainColor = Color(0xFFFCCE00);
+  static const  Color mainColor =  Color(0xFFFCCE00);
   static Color royalBlue  = Color(0xFF6981EC);
   static Color fieryRose = Color(0xFFFF6a7c);
   static Color maastrichtBlue = Color(0xff0c0d2c);

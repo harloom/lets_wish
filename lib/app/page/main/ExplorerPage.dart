@@ -42,7 +42,9 @@ class _ExplorerPageState extends State<ExplorerPage> with SingleTickerProviderSt
     return FadeTransition(
         opacity: _animation,
         child: Scaffold(
-
+            body: Center(
+              child: Text("Explorer Page"),
+            ),
         ));
   }
 
